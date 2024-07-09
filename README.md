@@ -1,5 +1,22 @@
 # Classy
-I need more training data
+## How to use
+Install: 
+<pre><code>pip install Classy-AI</code></pre>
+Setup:
+<pre><code>import Classy
+Classy.download()</code></pre>
+Downloads "data.pth" to your working directory. Also downloads the NLTK "punkt" tokenizer
+
+Usage (Pre built with OpenAI and other tools):
+<pre><code>import Classy
+Classy.init('/path/to/data.pth','OpenAI api key')
+primary, secondary, stemmed, organized = Classy.question("hello, how are you?")</code></pre>
+Usage (Just the classifier)
+<pre><code>import Classy
+Classy.init('/path/to/data.pth','Nothing here')
+intent, certainty = Classy.classify("hello, how are you?")</code></pre>
+
+## I need more training data
 
 Open a pull request if you have some and put it in unorganized data. I will format it. If you have organized data, put it directly in the intents.json file
 # Deployed here:
