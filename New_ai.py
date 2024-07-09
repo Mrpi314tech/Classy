@@ -27,7 +27,7 @@ tags = ''
 model_state = ''
 
 model = ''
-
+check=False
 def init(location,key):
     global client
     global data
@@ -38,6 +38,7 @@ def init(location,key):
     global tags
     global model_state
     global model
+    global check
     client = OpenAI(
         api_key=key
     )
@@ -52,6 +53,7 @@ def init(location,key):
     model = NeuralNet(input_size, hidden_size, output_size).to(device)
     model.load_state_dict(model_state)
     model.eval()
+    check=True
 ####################################################################################3
 
 
@@ -111,6 +113,9 @@ def bag_of_words(tokenized_sentence, words):
 #####################################################################
 # chatbot function
 def question(qstn):
+    global check
+    if check == False:
+        raise RuntimeError('Please use Classy.init() to set up the program.')
     # set variables
     global history
     global chat_history

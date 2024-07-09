@@ -16,8 +16,8 @@ all_words = ''
 tags = ''
 model_state = ''
 
-model = ''
-
+model = 'a'
+check=False
 def init(location):
     global data
     global input_size
@@ -27,6 +27,7 @@ def init(location):
     global tags
     global model_state
     global model
+    global check
     data = torch.load(location)
     input_size = data["input_size"]
     hidden_size = data["hidden_size"]
@@ -38,6 +39,7 @@ def init(location):
     model = NeuralNet(input_size, hidden_size, output_size).to(device)
     model.load_state_dict(model_state)
     model.eval()
+    check=True
 import numpy as np
 
 def bag_of_words(tokenized_sentence, words):
@@ -61,6 +63,9 @@ def tokenize(sentence):
     return nltk.word_tokenize(sentence)
 
 def classify(sentence):
+    global check
+    if check == False:
+        raise RuntimeError('Please use Classy.init() to set up the program.')
     #print(sentence)
     sentence = tokenize(sentence)
     #print(sentence)
