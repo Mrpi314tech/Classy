@@ -24,6 +24,8 @@ http://chat.mrpi314.com
 
 Website only works if one person is using it
 
+For best conversations type "reset" (all lowercase) before you start chatting.
+
 Charges $0.04 for every image you generate with your api key. Text generation is $0.50 for 1M input tokens (almost nothing).
 
 I can add a custom password for you on the website if you add training data. Message me at 123scoring@gmail.com. Put in the description of the pull request that you want a custom password for your Openai key. 
