@@ -17,6 +17,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 from openai import OpenAI
+from openai import AuthenticationError
 client=''
 data=0
 input_size = ''
@@ -316,8 +317,8 @@ def question(qstn):
         
             format_var=['Sent to GPT:\n'+chat_completion.choices[0].message.content]
             moodometer=[1,3]
-        except IndexError:
-            format_var=['Invalid API key']
+        except AuthenticationError:
+            format_var=['GPT: "'+together+'", Invalid API key']
             moodometer=[1,3]
     if '*dall-e' in format_var:
         try:
@@ -331,8 +332,8 @@ def question(qstn):
             )
             format_var=['Sent to Dall-e: '+response.data[0].url]
             moodometer=[1,3]
-        except IndexError:
-            format_var=['Invalid API key']
+        except AuthenticationError:
+            format_var=['Dall-E: "'+together+'", Invalid API key']
             moodometer=[1,3]
     if '*Search' in format_var:
         format_var=[ss.scrape(together)]
