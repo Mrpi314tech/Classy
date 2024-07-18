@@ -312,7 +312,7 @@ def question(qstn):
                      "content":prompt
                      },    
                 ],
-                model="gpt-3.5-turbo"
+                model="gpt-4o-mini"
             )
         
             format_var=['Sent to GPT:\n'+chat_completion.choices[0].message.content]
