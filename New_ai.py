@@ -146,9 +146,9 @@ def question(qstn):
     #print(prob.item())
     #print(tag)
     #########################################################################################3
-    if tag == 'GPT' and prob.item() >= 0.95:
+    if tag == 'GPT' and prob.item() >= 0.70:
         intent.append('*gpt')
-    elif tag == 'Dall-e' and prob.item() >= 0.95:
+    elif tag == 'Dall-e' and prob.item() >= 0.70:
         intent.append('*dall-e')
     elif tag == 'Search' and prob.item() >= 0.98:
         intent.append('*Search')

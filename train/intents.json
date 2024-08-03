@@ -207,7 +207,15 @@
         "Explain the terms 6-figure and other figures, in the context of money",
         "Make a python code so that every time that it is 12:00:00 PM, hello is printed once",
         "I have a website. The website is protected with cloudflare, so when they use nslookup, they see the cloudflare ip addresses. SSH is enabled on the website, with a very strong password. How secure is my website?",
-
+        "Code a BASH script that prints a phrase every morning at 7:00",
+        "Code a python game with the library PyGame",
+        "Program a website with only CSS and HTML that has pictures of rabbits at the top and a description on the bottom.",
+        "I have a budget of $100,000 to build a pc for training and running AI. I want the very best I can get. Give me a list of parts. The pc is purely for using with AI, so I will need all of the gpus and cpus best for AI",
+        "how do I add an ssl certificate to my website on cloudflare",
+        "how do I edit a file called input.txt in python",
+        "linux command that finds all of the file with the word 'nginx' in it",
+        "I have a python script, and another script that imports it. I need a variable in the first script to be changed in the second. How do I do this?",
+        "Explain how to make an AI chat bot in python with tensor flow and explain every step to a fifth grader"
       ],
       "responses": ["GPT"]
     },
@@ -528,7 +536,28 @@
         "What is the main ingredient in guacamole?",
         "What is the capital of Mexico?",
         "How many grams are in a kilogram?",
-        "What is the currency of the United Kingdom?"
+        "What is the currency of the United Kingdom?",
+        "What is the definition of photosynthesis?",
+        "Could you please define economics?",
+        "What does the term renaissance mean?",
+        "Can you provide the meaning of metabolism?",
+        "What is meant by the word justice?",
+        "How is the term democracy defined?",
+        "Please explain the meaning of epidemic.",
+        "What is the significance of the word symbiosis?",
+        "What does the term culture refer to?",
+        "Could you elucidate the definition of philosophy?",
+        "What does photosynthesis mean?",
+        "What's economics?",
+        "What does renaissance mean?",
+        "What's metabolism?",
+        "What does justice mean?",
+        "What does democracy mean?",
+        "What does epidemic mean?",
+        "What's symbiosis?",
+        "What's culture mean?",
+        "What does philosophy mean?"
+
       ],
       "responses": ["Search"]
     },
@@ -679,5 +708,3 @@
     }
   ]
 }
-
-
