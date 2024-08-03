@@ -18,15 +18,15 @@ intent, certainty = Classy.classify("hello, how are you?")</code></pre>
 
 ## I need more training data
 
-Open a pull request if you have some and put it in unorganized data. I will format it. If you have organized data, put it directly in the intents.json file
+Open a pull request if you have some and put it in unorganized data. I will format it. If you have organized data, put it directly in the intents.json file.
+
+An easy way to contribute is by scrolling through your ChatGPT conversations/Google searches/DALL-E inputs and pasting some of your own data into the unformatted data file.
 # Deployed here:
 http://chat.mrpi314.com
 
 Website only works if one person is using it
 
-For best conversations type "reset" (all lowercase) before you start chatting.
-
-Charges $0.04 for every image you generate with your api key. Text generation is $0.50 for 1M input tokens (almost nothing).
+Charges $0.04 for every image you generate with your api key. Text generation is $0.15 for 1M input tokens (almost nothing).
 
 I can add a custom password for you on the website if you add training data. Message me at 123scoring@gmail.com. Put in the description of the pull request that you want a custom password for your Openai key. 
 
