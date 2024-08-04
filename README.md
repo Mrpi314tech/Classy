@@ -16,6 +16,11 @@ Usage (Just the classifier)
 Classy.init('/path/to/data.pth','Nothing here')
 intent, certainty = Classy.classify("hello, how are you?")</code></pre>
 
+## API
+
+Go to http://chat.mrpi314.com/api to learn about how to use the api.
+
+
 ## I need more training data
 
 Open a pull request if you have some and put it in unorganized data. I will format it. If you have organized data, put it directly in the intents.json file.
