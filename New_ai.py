@@ -113,6 +113,8 @@ def bag_of_words(tokenized_sentence, words):
             bag[idx] = 1
     return bag
 #####################################################################
+
+messages=[]
 # chatbot function
 def question(qstn):
     global check
@@ -121,6 +123,7 @@ def question(qstn):
     # set variables
     global history
     global chat_history
+    global messages
     chatty=''
     moodometer=[]
     intent=[]
@@ -306,20 +309,19 @@ def question(qstn):
     if '*gpt' in format_var:
         try:
             prompt=together
-            chat_completion = client.chat.completions.create(
-                messages = [
-                    {
-                        "role":"user",
+            messages.append({
+                "role":"user",
                      "content":prompt
-                     },    
-                ],
+                })
+            chat_completion = client.chat.completions.create(
+                messages = messages,
                 model="gpt-4o-mini"
             )
-        
+            
             format_var=['Sent to GPT:\n'+chat_completion.choices[0].message.content]
             moodometer=[1,3]
         except AuthenticationError:
-            format_var=['GPT: "'+together+'", Invalid API key']
+            format_var=['GPT:\n"'+together+'", Invalid API key']
             moodometer=[1,3]
     if '*dall-e' in format_var:
         try:
@@ -337,8 +339,23 @@ def question(qstn):
             format_var=['Dall-E: "'+together+'", Invalid API key']
             moodometer=[1,3]
     if '*Search' in format_var:
-        format_var=[ss.scrape(together)]
-        moodometer=[1,3]
+        try:
+            prompt="I have a webscraper. Organize the output into a single, clean sentence. Output just the cleaned sentence. My input is "
+            chat_completion = client.chat.completions.create(
+                messages = [
+                    {
+                        "role":"user",
+                     "content":prompt+ss.scrape(together)
+                     },    
+                ],
+                model="gpt-4o-mini"
+            )
+        
+            format_var=['GPT+Search_Scrape: \n'+chat_completion.choices[0].message.content]
+            moodometer=[1,3]
+        except AuthenticationError:
+            format_var=['Search_Scrape: '+ss.scrape(together)]
+            moodometer=[1,3]
     if 'rock paper scissors' in together:
         format_var.append('Do you want to throw rock, paper, or scissors?')
         moodometer=[1,3]

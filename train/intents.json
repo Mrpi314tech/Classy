@@ -215,7 +215,20 @@
         "how do I edit a file called input.txt in python",
         "linux command that finds all of the file with the word 'nginx' in it",
         "I have a python script, and another script that imports it. I need a variable in the first script to be changed in the second. How do I do this?",
-        "Explain how to make an AI chat bot in python with tensor flow and explain every step to a fifth grader"
+        "Explain how to make an AI chat bot in python with tensor flow and explain every step to a fifth grader",
+        "Switch the button color to red",
+        "Adjust the background color of the page to white",
+        "Change the footer text to 2024 All Rights Reserved",
+        "Replace the image with a photo of a sunset",
+        "Rename the variable to userInput",
+        "Change the logo to the new company design",
+        "Update the author's name to Jane Doe",
+        "Set the border color of the table to blue",
+        "Switch the font style to Arial",
+        "Change the heading size to 24px",
+        "EOF occurred in violation of protocol, I got this error when I ran it",
+        "how fast could this setup download a 1tb file from github",
+        "now create 20 sentances, one for each word, that would be a possible input for an ai image generator"
       ],
       "responses": ["GPT"]
     },
