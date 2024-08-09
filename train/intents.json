@@ -228,7 +228,10 @@
         "Change the heading size to 24px",
         "EOF occurred in violation of protocol, I got this error when I ran it",
         "how fast could this setup download a 1tb file from github",
-        "now create 20 sentances, one for each word, that would be a possible input for an ai image generator"
+        "now create 20 sentances, one for each word, that would be a possible input for an ai image generator",
+        "can you put it in the whole index.html",
+        "how can I add a random user agent string",
+        "can you make it so that all but the middle pictures disappear when the screen is too tight"
       ],
       "responses": ["GPT"]
     },
@@ -586,8 +589,6 @@
         "Can you tell me about yourself?",
         "What languages do you speak?",
         "What do you like to do in your free time?",
-        "Are you a robot?",
-        "Do you dream?",
         "What are your goals?",
         "What is your favorite book/movie?",
         "What is your favorite subject?",

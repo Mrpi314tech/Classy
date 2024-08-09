@@ -61,7 +61,7 @@ input_size = len(X_train[0])
 hidden_size = 512
 hidden_size_2=256
 output_size = len(tags)
-print(input_size+' > '+hidden_size+' > '+hidden_size_2+' > '+output_size)
+print(str(input_size)+' > '+str(hidden_size)+' > '+str(hidden_size_2)+' > '+str(output_size))
 
 class ChatDataset(Dataset):
 
