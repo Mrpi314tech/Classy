@@ -6,8 +6,8 @@ from . import basic
 import time
 import os
 import nltk
-def init(location,key):
-    New_ai.init(location,key)
+def init(location,key,user_name):
+    New_ai.init(location,key,user_name)
     basic.init(location)
 def download():
     print('Downloading the model from GitHub. Press Ctrl+c to quit.')

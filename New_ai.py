@@ -3,8 +3,8 @@ import nltk
 from random import choice
 import Search_Scrape as ss
 import copy
-
-
+import ast
+import os
 
 #############################################################################3
 import torch
@@ -29,7 +29,8 @@ model_state = ''
 
 model = ''
 check=False
-def init(location,key):
+user_name=''
+def init(location,key,uname):
     global client
     global data
     global input_size
@@ -40,6 +41,10 @@ def init(location,key):
     global model_state
     global model
     global check
+
+    global user_name
+    user_name=uname
+
     client = OpenAI(
         api_key=key
     )
@@ -65,10 +70,6 @@ from nltk.stem.porter import PorterStemmer
 
 # define variables
 stemmer = PorterStemmer()
-history=['','']
-mood_history=['','']
-chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
-chat_history=['','']
 # functions for manipulating lists
 def list_replace(my_list, old_value, new_value):
     for index, value in enumerate(my_list):
@@ -114,16 +115,36 @@ def bag_of_words(tokenized_sentence, words):
     return bag
 #####################################################################
 
-messages=[]
 # chatbot function
 def question(qstn):
+    try:
+        file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "r")
+
+        imported_var=file1.read()
+
+        file1.close()
+
+
+        imported_var=imported_var.split('\n')
+        chatlist=ast.literal_eval(imported_var[0])
+        mood_history=ast.literal_eval(imported_var[1])
+        history=ast.literal_eval(imported_var[2])
+        chat_history=ast.literal_eval(imported_var[3])
+        messages=ast.literal_eval(imported_var[4])
+    except FileNotFoundError:
+        chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
+        history=['','']
+        mood_history=['','']
+        chat_history=['','']
+        messages=[]
+
     global check
     if check == False:
         raise RuntimeError('Please use Classy.init() to set up the program.')
     # set variables
-    global history
-    global chat_history
-    global messages
+    #global history
+    #global chat_history
+    #global messages
     chatty=''
     moodometer=[]
     intent=[]
@@ -157,7 +178,7 @@ def question(qstn):
     elif tag == 'Search' and prob.item() >= 0.98:
         intent.append('*Search')
         
-       
+    
     # organize
     for keyword in qstn:
         # greeting
@@ -305,6 +326,9 @@ def question(qstn):
         moodometer=[1,2,3]
     if '*thanks' in format_var:
         format_var=list_replace(format_var, '*thanks', choice(thank_response))
+    if together == 'RESET':
+        format_var=['reset','*RESET']
+        moodometer=[1]
     # other functions
     if '*gpt' in format_var:
         try:
@@ -367,8 +391,8 @@ def question(qstn):
     if final == '':
         moodometer=[5]
     # Determine mood
-    global mood_history
-    global chatlist
+    #global mood_history
+    #global chatlist
     mood=choice(moodometer)
     mood_average=most_frequent(mood_history)
     mood_history.insert(0, mood)
@@ -394,6 +418,19 @@ def question(qstn):
     if mood == 4:
         chatty=''
         pass
+    if '*RESET' in format_var:
+        chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
+        history=['','']
+        mood_history=['','']
+        chat_history=['','']
+        messages=[]
+        file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "w")
+        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages))
+        file1.close()
+    else:
+        file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "w")
+        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages))
+        file1.close()
     # finished
     return final, chatty, qstn, debug_format_var
 # Everything below can be deleted  
