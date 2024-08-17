@@ -131,13 +131,20 @@ def question(qstn):
         history=ast.literal_eval(imported_var[2])
         chat_history=ast.literal_eval(imported_var[3])
         messages=ast.literal_eval(imported_var[4])
+        s_messages=ast.literal_eval(imported_var[5])
     except FileNotFoundError:
         chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
         history=['','']
         mood_history=['','']
         chat_history=['','']
-        messages=[]
-
+        messages=[{
+                "role":"system",
+                    "content":'keep everything to one line'
+                }]
+        s_messages=[{
+                "role":"system",
+                "content":'I have a webscraper. Organize the output into a single, clean sentence. If necessary, use your own knowledge or context to give the desired output. Output just the cleaned sentence.'
+                }]
     global check
     if check == False:
         raise RuntimeError('Please use Classy.init() to set up the program.')
@@ -175,7 +182,7 @@ def question(qstn):
         intent.append('*gpt')
     elif tag == 'Dall-e' and prob.item() >= 0.70:
         intent.append('*dall-e')
-    elif tag == 'Search' and prob.item() >= 0.98:
+    elif tag == 'Search' and prob.item() >= 0.70:
         intent.append('*Search')
         
     
@@ -364,14 +371,15 @@ def question(qstn):
             moodometer=[1,3]
     if '*Search' in format_var:
         try:
-            prompt="I have a webscraper. Organize the output into a single, clean sentence. Output just the cleaned sentence. My input is "
+
+
+
+            s_messages.append({
+                "role":"user",
+                     "content":ss.scrape(together)
+                })
             chat_completion = client.chat.completions.create(
-                messages = [
-                    {
-                        "role":"user",
-                     "content":prompt+ss.scrape(together)
-                     },    
-                ],
+                messages = s_messages,
                 model="gpt-4o-mini"
             )
         
@@ -423,29 +431,24 @@ def question(qstn):
         history=['','']
         mood_history=['','']
         chat_history=['','']
-        messages=[]
+        messages=[{
+                "role":"system",
+                "content":'keep everything to one line'
+                }]
+        s_messages=[{
+                "role":"system",
+                "content":'I have a webscraper. Organize the output into a single, clean sentence. If necessary, use your own knowledge or context to give the desired output. Output just the cleaned sentence.'
+                }]
         file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "w")
-        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages))
+        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages)+'\n'+str(s_messages))
         file1.close()
     else:
         file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "w")
-        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages))
+        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages)+'\n'+str(s_messages))
         file1.close()
     # finished
     return final, chatty, qstn, debug_format_var
-# Everything below can be deleted  
-#while True:
-    #var=input(': ')
-    #x, y, z, a = question(var)
-    #print(x)
-    #if y != '':
-        #print(y)
-    #print(z)
-    #print(a)
     
-# To do:
-# Add in more responses and inputs
-# Goodbye
 
 # Moodometer cheat sheet
 # 1 is good
@@ -454,58 +457,3 @@ def question(qstn):
 # 4 is bad
 
 ################################################################################################################################################################################
-
-input_output_list = [
-
-    # Keywords: 'rock paper scissors'
-    ('rock paper', 'Do you want to throw rock, paper, or scissors?', [1, 2, 3, 4, 4]),
-
-    # Keywords: 'how old are you'
-    ('how old are you', 'I was born in 2021', [1, 2, 3, 4, 5]),
-
-
-    # Keywords: 'sorry'
-    ('sorry', 'for what?', [1, 2, 3, 4]),
-
-    # Keywords: 'have a great day'
-    ('have a great day', 'yes it is', [1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 5]),
-
-    # Keywords: 'I know'
-    ('I know', 'so true', [1, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4]),
-
-    # Keywords: 'you look good'
-    ('you look good', 'thanks!', [2, 4, 4, 4, 4]),
-
-    # Keywords: 'you look bad'
-    ('you look bad', 'Thats not nice', [5, 5, 5, 5, 5, 5, 5, 5, 5]),
-
-    # Keywords: 'you are'
-    ('you are', "No I'm not", [1, 2, 3]),
-
-    # Keywords: 'I will'
-    ('I will', 'that is good', [1, 2, 3, 4, 4, 4, 4, 4, 4]),
-
-    # Keywords: 'me too'
-    ('me too', ':)', [1, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4]),
-
-    # Keywords: 'I wish'
-    ('I wish', 'me too', [1, 2, 3, 4, 4, 4]),
-
-    # Keywords: 'correct you are'
-    ('correct you are', 'I know', [1, 2, 3, 4]),
-
-    # Keywords: 'oh'
-    ('oh', 'yep', [1, 2, 3, 4, 5]),
-
-    # Keywords: 'who are you'
-    ('who are you', 'I am {name}', [1, 2, 3, 4, 5]),
-
-    # Keywords: 'what are you'
-    ('what are you', "I'm not sure I have one", [1, 2, 3, 4]),
-
-    # Keywords: 'what time is it'
-    ('what time is it', 'time', [1, 2, 3, 4, 5]),
-
-    # Keywords: 'favorite movie'
-    ('favorite movie', 'anything with Wall-e or the Jetsons', [1, 2, 3, 4, 5])
-]
