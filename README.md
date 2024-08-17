@@ -11,7 +11,7 @@ Downloads "data.pth" to your working directory. Also downloads the NLTK "punkt" 
 Usage (Complete version for a server):
 <pre><code>import Classy
 Classy.init('/path/to/data.pth','OpenAI api key')
-primary, secondary, stemmed, organized = Classy.question("hello, how are you?")</code></pre>
+primary, secondary, stemmed, organized = Classy.server("hello, how are you?")</code></pre>
 Usage (Just the classifier)
 <pre><code>import Classy
 intent, certainty = Classy.classify("hello, how are you?",'/path/to/data.pth')</code></pre>
