@@ -10,18 +10,34 @@ from .functions import search
 from .server import server
 from . import model
 from .basic import classify
-from .basic import classify_api
 from . import server
 from . import basic
 import time
 import os
 import nltk
+import requests
+import urllib.parse
+
+def classify_api(sentence):
+    sentence = urllib.parse.quote(sentence)
+    response=requests.get('http://chat.mrpi314.com/api/'+sentence)
+    response=response.json()
+    output_tag=response['output']
+    prob_int=response['certainty']
+    return output_tag, float(prob_int)
+
+
+
 def init(location,key,user_name):
     New_ai.init(location,key,user_name)
 def download():
     print('Downloading the model from GitHub. Press Ctrl+c to quit.')
     time.sleep(3)
     os.system('wget https://github.com/Mrpi314tech/Classy/raw/main/train/data.pth')
-    print('Downloading nltk tokenizer. Press Ctrl+c to quit.')
-    time.sleep(3)
+try:
+    import nltk
+    nltk.word_tokenize('')
+except LookupError:
+    import nltk
+    print('downloading nltk tokenizer')
     nltk.download('punkt')

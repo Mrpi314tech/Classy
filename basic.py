@@ -4,9 +4,6 @@ from Classy.model import NeuralNet
 import nltk
 from nltk.stem.porter import PorterStemmer
 
-import requests
-import urllib.parse
-
 stemmer = PorterStemmer()
 
 
@@ -74,11 +71,3 @@ def classify(sentence,location):
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     return tag, prob.item()
-
-def classify_api(sentence):
-    sentence = urllib.parse.quote(sentence)
-    response=requests.get('http://chat.mrpi314.com/api/'+sentence)
-    response=response.json()
-    output_tag=response['output']
-    prob_int=response['certainty']
-    return output_tag, float(prob_int)
