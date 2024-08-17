@@ -6,62 +6,10 @@ import copy
 import ast
 import os
 
-#############################################################################3
-import torch
-from Classy.model import NeuralNet
-
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-
 
 
 from openai import OpenAI
 from openai import AuthenticationError
-client=''
-data=0
-input_size = ''
-hidden_size = ''
-output_size = ''
-all_words = ''
-tags = ''
-model_state = ''
-
-model = ''
-check=False
-user_name=''
-def init(location,key,uname):
-    global client
-    global data
-    global input_size
-    global hidden_size
-    global output_size
-    global all_words
-    global tags
-    global model_state
-    global model
-    global check
-
-    global user_name
-    user_name=uname
-
-    client = OpenAI(
-        api_key=key
-    )
-    data = torch.load(location)
-    input_size = data["input_size"]
-    hidden_size = data["hidden_size"]
-    hidden_size_2 = data["hidden_size_2"]
-    output_size = data["output_size"]
-    all_words = data['all_words']
-    tags = data['tags']
-    model_state = data["model_state"]
-
-    model = NeuralNet(input_size, hidden_size, hidden_size_2, output_size).to(device)
-    model.load_state_dict(model_state)
-    model.eval()
-    check=True
-####################################################################################3
 
 
 # nltk.download('punkt')
@@ -93,61 +41,18 @@ def stem(word):
 
 
 
-# bow ######################################################################3
-import numpy as np
-
-def bag_of_words(tokenized_sentence, words):
-    """
-    return bag of words array:
-    1 for each known word that exists in the sentence, 0 otherwise
-    example:
-    sentence = ["hello", "how", "are", "you"]
-    words = ["hi", "hello", "I", "you", "bye", "thank", "cool"]
-    bog   = [  0 ,    1 ,    0 ,   1 ,    0 ,    0 ,      0]
-    """
-    # stem each word
-    sentence_words = [stemmer.stem(word.lower()) for word in tokenized_sentence]
-    # initialize bag with 0 for each word
-    bag = np.zeros(len(words), dtype=np.float32)
-    for idx, w in enumerate(words):
-        if w in sentence_words: 
-            bag[idx] = 1
-    return bag
-#####################################################################
-
 # chatbot function
-def question(qstn):
-    try:
-        file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "r")
-
-        imported_var=file1.read()
-
-        file1.close()
 
 
-        imported_var=imported_var.split('\n')
-        chatlist=ast.literal_eval(imported_var[0])
-        mood_history=ast.literal_eval(imported_var[1])
-        history=ast.literal_eval(imported_var[2])
-        chat_history=ast.literal_eval(imported_var[3])
-        messages=ast.literal_eval(imported_var[4])
-        s_messages=ast.literal_eval(imported_var[5])
-    except FileNotFoundError:
-        chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
-        history=['','']
-        mood_history=['','']
-        chat_history=['','']
-        messages=[{
-                "role":"system",
-                    "content":'keep everything to one line'
-                }]
-        s_messages=[{
-                "role":"system",
-                "content":'I have a webscraper. Organize the output into a single, clean sentence. If necessary, use your own knowledge or context to give the desired output. Output just the cleaned sentence.'
-                }]
-    global check
-    if check == False:
-        raise RuntimeError('Please use Classy.init() to set up the program.')
+chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
+history=['','']
+mood_history=['','']
+chat_history=['','']
+def personal(qstn):
+    global chatlist
+    global history
+    global mood_history
+    global chat_history
     # set variables
     #global history
     #global chat_history
@@ -162,28 +67,6 @@ def question(qstn):
     tokenized_input=tokenize(qstn)
     qstn=stem(tokenized_input)
     #print(qstn)
-    
-    
-    # ai stuff ##########################################################################33
-    X = bag_of_words(tokenized_input, all_words)
-    X = X.reshape(1, X.shape[0])
-    X = torch.from_numpy(X).to(device)
-    
-    output = model(X)
-    _, predicted = torch.max(output, dim=1)
-    tag = tags[predicted.item()]
-    probs = torch.softmax(output, dim=1)
-    prob = probs[0][predicted.item()]
-    
-    #print(prob.item())
-    #print(tag)
-    #########################################################################################3
-    if tag == 'GPT' and prob.item() >= 0.70:
-        intent.append('*gpt')
-    elif tag == 'Dall-e' and prob.item() >= 0.70:
-        intent.append('*dall-e')
-    elif tag == 'Search' and prob.item() >= 0.70:
-        intent.append('*Search')
         
     
     # organize
@@ -337,57 +220,6 @@ def question(qstn):
         format_var=['reset','*RESET']
         moodometer=[1]
     # other functions
-    if '*gpt' in format_var:
-        try:
-            prompt=together
-            messages.append({
-                "role":"user",
-                     "content":prompt
-                })
-            chat_completion = client.chat.completions.create(
-                messages = messages,
-                model="gpt-4o-mini"
-            )
-            
-            format_var=['Sent to GPT:\n'+chat_completion.choices[0].message.content]
-            moodometer=[1,3]
-        except AuthenticationError:
-            format_var=['GPT:\n"'+together+'", Invalid API key']
-            moodometer=[1,3]
-    if '*dall-e' in format_var:
-        try:
-            prompt=together
-            response = client.images.generate(
-                model="dall-e-3",
-                prompt=prompt,
-                size="1024x1024",
-                quality="standard",
-                n=1,
-            )
-            format_var=['Sent to Dall-e: '+response.data[0].url]
-            moodometer=[1,3]
-        except AuthenticationError:
-            format_var=['Dall-E: "'+together+'", Invalid API key']
-            moodometer=[1,3]
-    if '*Search' in format_var:
-        try:
-
-
-
-            s_messages.append({
-                "role":"user",
-                     "content":ss.scrape(together)
-                })
-            chat_completion = client.chat.completions.create(
-                messages = s_messages,
-                model="gpt-4o-mini"
-            )
-        
-            format_var=['GPT+Search_Scrape: \n'+chat_completion.choices[0].message.content]
-            moodometer=[1,3]
-        except AuthenticationError:
-            format_var=['Search_Scrape: '+ss.scrape(together)]
-            moodometer=[1,3]
     if 'rock paper scissors' in together:
         format_var.append('Do you want to throw rock, paper, or scissors?')
         moodometer=[1,3]
@@ -426,30 +258,63 @@ def question(qstn):
     if mood == 4:
         chatty=''
         pass
-    if '*RESET' in format_var:
-        chatlist=['Ask me anything! I can search google for an answer.','I can do many things to help out. Just ask me!', 'if you want to play a game, just ask me!','what is your favorite color?', "what are you doing today?", 'what is your favorite food?', 'Tell me about yourself.',"What's your favorite thing to do in your free time?",    "Have you traveled anywhere recently? Where did you go?",    "What's your favorite type of music?",    "Do you have any hobbies that you enjoy?",    "What do you like to do on the weekends?"]
-        history=['','']
-        mood_history=['','']
-        chat_history=['','']
-        messages=[{
-                "role":"system",
-                "content":'keep everything to one line'
-                }]
-        s_messages=[{
-                "role":"system",
-                "content":'I have a webscraper. Organize the output into a single, clean sentence. If necessary, use your own knowledge or context to give the desired output. Output just the cleaned sentence.'
-                }]
-        file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "w")
-        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages)+'\n'+str(s_messages))
-        file1.close()
-    else:
-        file1 = open(os.path.join(os.path.dirname(__file__), user_name+"_data"), "w")
-        file1.write(str(chatlist)+'\n'+str(mood_history)+'\n'+str(history)+'\n'+str(chat_history)+'\n'+str(messages)+'\n'+str(s_messages))
-        file1.close()
     # finished
     return final, chatty, qstn, debug_format_var
-    
 
+
+messages=[{
+        "role":"system",
+        "content":'keep everything to one line'
+            }]
+s_messages=[{
+        "role":"system",
+        "content":'I have a webscraper. Organize the output into a single, clean sentence. If necessary, use your own knowledge or context to give the desired output. Output just the cleaned sentence.'
+        }]
+
+def chat_gpt(prompt,model,apikey):
+    global messages
+    client = OpenAI(
+        api_key=apikey
+    )
+    prompt=prompt
+    messages.append({
+        "role":"user",
+        "content":prompt
+        })
+    chat_completion = client.chat.completions.create(
+        messages = messages,
+        model=model
+    )     
+    g_output=chat_completion.choices[0].message.content
+    return g_output
+def dall_e(prompt,model,size,apikey):
+    client = OpenAI(
+        api_key=apikey
+    )
+    response = client.images.generate(
+        model=model,
+        prompt=prompt,
+        size=size,
+        quality="standard",
+        n=1,
+    )
+    d_output=response.data[0].url
+    return d_output
+def search(prompt,model,apikey):
+    client = OpenAI(
+        api_key=apikey
+    )
+    s_messages.append({
+        "role":"user",
+        "content":ss.scrape(prompt)
+        })
+    chat_completion = client.chat.completions.create(
+        messages = s_messages,
+        model=model
+    )
+        
+    s_output=chat_completion.choices[0].message.content
+    return s_output
 # Moodometer cheat sheet
 # 1 is good
 # 2 is chatty

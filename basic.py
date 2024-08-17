@@ -3,6 +3,10 @@ import torch
 from Classy.model import NeuralNet
 import nltk
 from nltk.stem.porter import PorterStemmer
+
+import requests
+import urllib.parse
+
 stemmer = PorterStemmer()
 
 
@@ -44,14 +48,6 @@ def init(location):
 import numpy as np
 
 def bag_of_words(tokenized_sentence, words):
-    """
-    return bag of words array:
-    1 for each known word that exists in the sentence, 0 otherwise
-    example:
-    sentence = ["hello", "how", "are", "you"]
-    words = ["hi", "hello", "I", "you", "bye", "thank", "cool"]
-    bog   = [  0 ,    1 ,    0 ,   1 ,    0 ,    0 ,      0]
-    """
     # stem each word
     sentence_words = [stemmer.stem(word.lower()) for word in tokenized_sentence]
     # initialize bag with 0 for each word
@@ -63,15 +59,12 @@ def bag_of_words(tokenized_sentence, words):
 def tokenize(sentence):
     return nltk.word_tokenize(sentence)
 
-def classify(sentence):
+def classify(sentence,location):
     global check
     if check == False:
-        raise RuntimeError('Please use Classy.init() to set up the program.')
-    #print(sentence)
+        init(location)
     sentence = tokenize(sentence)
-    #print(sentence)
     X = bag_of_words(sentence, all_words)
-    #print(X)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
     
@@ -81,4 +74,11 @@ def classify(sentence):
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     return tag, prob.item()
-    
+
+def classify_api(sentence):
+    sentence = urllib.parse.quote(sentence)
+    response=requests.get('http://chat.mrpi314.com/api/'+sentence)
+    response=response.json()
+    output_tag=response['output']
+    prob_int=response['certainty']
+    return output_tag, float(prob_int)
