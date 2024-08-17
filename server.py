@@ -30,7 +30,7 @@ model_state = ''
 model = ''
 check=False
 user_name=''
-def init(location,key,uname):
+def init(location,key):
     global client
     global data
     global input_size
@@ -43,7 +43,7 @@ def init(location,key,uname):
     global check
 
     global user_name
-    user_name=uname
+    user_name=key
 
     client = OpenAI(
         api_key=key

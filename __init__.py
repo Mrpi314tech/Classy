@@ -10,7 +10,7 @@ from .functions import search
 from .server import server
 from . import model
 from .basic import classify
-from . import server
+from .server import init as s_init
 from . import basic
 import time
 import os
@@ -28,8 +28,8 @@ def classify_api(sentence):
 
 
 
-def init(location,key,user_name):
-    New_ai.init(location,key,user_name)
+def init(location,key):
+    s_init(location,key)
 def download():
     print('Downloading the model from GitHub. Press Ctrl+c to quit.')
     time.sleep(3)
