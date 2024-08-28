@@ -51,13 +51,13 @@ def init(location,key):
     data = torch.load(location)
     input_size = data["input_size"]
     hidden_size = data["hidden_size"]
-    hidden_size_2 = data["hidden_size_2"]
+    #hidden_size_2 = data["hidden_size_2"]
     output_size = data["output_size"]
     all_words = data['all_words']
     tags = data['tags']
     model_state = data["model_state"]
 
-    model = NeuralNet(input_size, hidden_size, hidden_size_2, output_size).to(device)
+    model = NeuralNet(input_size, hidden_size, output_size).to(device)
     model.load_state_dict(model_state)
     model.eval()
     check=True
