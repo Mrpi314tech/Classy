@@ -58,10 +58,10 @@ num_epochs = 1000
 batch_size = 64
 learning_rate = 0.001
 input_size = len(X_train[0])
-hidden_size = 512
-hidden_size_2=256
+hidden_size = 4
+hidden_size_2=0
 output_size = len(tags)
-print(str(input_size)+' > '+str(hidden_size)+' > '+str(hidden_size_2)+' > '+str(output_size))
+print(str(input_size)+' > '+str(hidden_size)+' > '+str(output_size))
 
 class ChatDataset(Dataset):
 
@@ -86,7 +86,7 @@ train_loader = DataLoader(dataset=dataset,
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model = NeuralNet(input_size, hidden_size, hidden_size_2, output_size).to(device)
+model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
 # Loss and optimizer
 criterion = nn.CrossEntropyLoss()
@@ -111,6 +111,7 @@ for epoch in range(num_epochs):
         
     if (epoch+1) % 100 == 0:
         print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
+
 
 
 print(f'final loss: {loss.item():.4f}')

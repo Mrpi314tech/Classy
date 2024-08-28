@@ -1,20 +1,22 @@
 import torch
 import torch.nn as nn
 
-
 class NeuralNet(nn.Module):
-    def __init__(self, input_size, hidden_size, hidden_size_2, num_classes):
+    def __init__(self, input_size, hidden_size, num_classes):
         super(NeuralNet, self).__init__()
+        # Define the single hidden layer
         self.l1 = nn.Linear(input_size, hidden_size) 
-        self.l2 = nn.Linear(hidden_size, hidden_size_2)
-        self.l3 = nn.Linear(hidden_size_2, num_classes)
+        # Define the output layer
+        self.l2 = nn.Linear(hidden_size, num_classes)
+        # Activation function
         self.relu = nn.ReLU()
     
     def forward(self, x):
+        # Apply first linear layer
         out = self.l1(x)
+        # Apply ReLU activation
         out = self.relu(out)
+        # Apply second linear layer
         out = self.l2(out)
-        out = self.relu(out)
-        out = self.l3(out)
-        # no activation and no softmax at the end
+        # No activation or softmax at the end
         return out
