@@ -5,7 +5,7 @@ Install:
 Setup: **Only do this if you plan to run the model locally**
 <pre><code>import Classy
 Classy.download()</code></pre>
-Downloads "data.pth" to your working directory. Also downloads the NLTK "punkt" tokenizer
+Downloads "data.pth" to your working directory.
 
 
 Usage (Complete version for a server):
