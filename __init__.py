@@ -20,7 +20,7 @@ import urllib.parse
 
 def classify_api(sentence):
     sentence = urllib.parse.quote(sentence)
-    response=requests.get('http://chat.mrpi314.com/api/'+sentence)
+    response=requests.get('http://app.chat314.com/api/'+sentence)
     response=response.json()
     output_tag=response['output']
     prob_int=response['certainty']
