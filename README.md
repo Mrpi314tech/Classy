@@ -59,7 +59,7 @@ Open a pull request if you have some and put it in unorganized data. I will form
 
 An easy way to contribute is by scrolling through your ChatGPT conversations/Google searches/DALL-E inputs and pasting some of your own data into the unformatted data file.
 # Deployed here:
-http://chat.mrpi314.com
+https://app.chat314.com
 
 Uses models gpt-4o-mini and dall-e-3.
 
