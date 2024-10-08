@@ -256,7 +256,10 @@
         "What’s the best recipe for making French toast?",
         "Can you give me a recipe for a low-sugar dessert?",
         "Do you have a recipe for homemade granola bars?",
-        "Can you suggest a recipe for a refreshing summer drink?"
+        "Can you suggest a recipe for a refreshing summer drink?",
+        "List what kinds of toys kids like.",
+        "List the different kinds of chips.",
+        "List the kinds of exercise that help people lose weight."
       ],
       "responses": ["GPT"]
     },
@@ -480,9 +483,10 @@
         "Create a majestic view of a snow-capped mountain range.",
         "Generate a stunning underwater scene with colorful fish.",
         "Generate a modern skyscraper skyline at sunset.",
-        "List what kinds of toys kids like.",
-        "List the different kinds of chips.",
-        "List the kinds of exercise that help people lose weight."
+        "Create an image of a cookie and a brownie giving each other a high five",
+        "Generate an image of a tasty brownie.",
+        "Make a picture of a tasty desert.",
+        "Make an image of a nice Thanksgiving dinner."
       ],
       "responses": ["Dall-e"]
     },
