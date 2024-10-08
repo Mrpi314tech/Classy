@@ -479,7 +479,10 @@
         "Depict a clear, starry night in the mountains.",
         "Create a majestic view of a snow-capped mountain range.",
         "Generate a stunning underwater scene with colorful fish.",
-        "Generate a modern skyscraper skyline at sunset."
+        "Generate a modern skyscraper skyline at sunset.",
+        "List what kinds of toys kids like.",
+        "List the different kinds of chips.",
+        "List the kinds of exercise that help people lose weight."
       ],
       "responses": ["Dall-e"]
     },
@@ -656,7 +659,12 @@
         "What are medieval castles?",
         "What are natural rights?",
         "What are federal laws?",
-        "What are cultural festivals?"
+        "What are cultural festivals?",
+        "What kinds of toys do toddlers like?",
+        "What kind of car has the best gas mileage?",
+        "What kinds of food are the most healthy?",
+        "What kind of metal is the most durable?",
+        "What kind of paper is used for money?"
       ],
       "responses": ["Search"]
     },
