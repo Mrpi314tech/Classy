@@ -668,7 +668,11 @@
         "What kind of car has the best gas mileage?",
         "What kinds of food are the most healthy?",
         "What kind of metal is the most durable?",
-        "What kind of paper is used for money?"
+        "What kind of paper is used for money?",
+        "what types of minerals or rocks can this element be found in?",
+        "What types of ice cream are most popular?",
+        "What types of plastic are cheap and durable?",
+        "What types of metal are used in computers?"
       ],
       "responses": ["Search"]
     },
@@ -791,6 +795,12 @@
         "I enjoy going for long walks.",
         "I am interested in digital art.",
         "Hello",
+        "Howdy",
+        "What's up",
+        "How's it going?",
+        "Greetings",
+        "Good day",
+        "Hi",
         "How are you?",
         "I am great.",
         "Nothing.",
