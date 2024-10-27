@@ -259,7 +259,9 @@
         "Can you suggest a recipe for a refreshing summer drink?",
         "List what kinds of toys kids like.",
         "List the different kinds of chips.",
-        "List the kinds of exercise that help people lose weight."
+        "List the kinds of exercise that help people lose weight.",
+        "What is a python coding project I can make?",
+        "What is an easy recipe for cookies I can make in under 30 minutes?"
       ],
       "responses": ["GPT"]
     },
@@ -486,7 +488,12 @@
         "Create an image of a cookie and a brownie giving each other a high five",
         "Generate an image of a tasty brownie.",
         "Make a picture of a tasty desert.",
-        "Make an image of a nice Thanksgiving dinner."
+        "Make an image of a nice Thanksgiving dinner.",
+        "Draw me a picture of a computer running python code.",
+        "Make me an image of a unicorn running on a rainbow.",
+        "Can I have an image of a chicken eating at McDonalds?",
+        "Can you make me a picture of a rabbit eating a large carrot?",
+        "Make me a picture of a cow eating a thanksgiving dinner."
       ],
       "responses": ["Dall-e"]
     },
@@ -672,7 +679,14 @@
         "what types of minerals or rocks can this element be found in?",
         "What types of ice cream are most popular?",
         "What types of plastic are cheap and durable?",
-        "What types of metal are used in computers?"
+        "What types of metal are used in computers?",
+        "Tell me who won the football game.",
+        "Can you tell me where Yellowstone is located?",
+        "Tell me what an ellipse is.",
+        "Let me know what an elephant eats.",
+        "Can you tell me what the most famous repository on GitHub is?",
+        "Can you inform me of a way to survive a hurricane?",
+        "Can you let me know when the football team plays?"
       ],
       "responses": ["Search"]
     },
