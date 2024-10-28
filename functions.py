@@ -261,7 +261,7 @@ def personal(qstn):
     # finished
     return final, chatty, qstn, debug_format_var
 
-
+# define variables for GPT
 messages=[{
         "role":"system",
         "content":'keep everything to one line'
@@ -270,7 +270,7 @@ s_messages=[{
         "role":"system",
         "content":'I have a webscraper. Organize the output into a single, clean sentence. If necessary, use your own knowledge or context to give the desired output. Output just the cleaned sentence.'
         }]
-
+# basic chat gpt function
 def chat_gpt(prompt,model,apikey):
     global messages
     client = OpenAI(
@@ -287,6 +287,7 @@ def chat_gpt(prompt,model,apikey):
     )     
     g_output=chat_completion.choices[0].message.content
     return g_output
+# basic dall_e function
 def dall_e(prompt,model,size,apikey):
     client = OpenAI(
         api_key=apikey
@@ -300,6 +301,7 @@ def dall_e(prompt,model,size,apikey):
     )
     d_output=response.data[0].url
     return d_output
+# Chat GPT with Search_Scrape
 def search(prompt,model,apikey):
     client = OpenAI(
         api_key=apikey
