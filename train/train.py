@@ -11,7 +11,7 @@ from model import NeuralNet
 
 with open('intents.json', 'r') as f:
     intents = json.load(f)
-
+# define variables
 all_words = []
 tags = []
 xy = []
@@ -34,7 +34,7 @@ all_words = [stem(w) for w in all_words if w not in ignore_words]
 # remove duplicates and sort
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
-
+# print out data
 print(len(xy), "patterns")
 print(len(tags), "tags:", tags)
 print(len(all_words), "unique stemmed words:", all_words)
@@ -62,7 +62,7 @@ hidden_size = 8
 hidden_size_2=0
 output_size = len(tags)
 print(str(input_size)+' > '+str(hidden_size)+' > '+str(output_size))
-
+# create dataset for training
 class ChatDataset(Dataset):
 
     def __init__(self):
