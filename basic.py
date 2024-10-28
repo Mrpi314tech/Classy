@@ -1,9 +1,10 @@
+# import packages
 import random
 import torch
 from Classy.model import NeuralNet
 import nltk
 from nltk.stem.porter import PorterStemmer
-
+# define variables
 stemmer = PorterStemmer()
 
 
@@ -19,6 +20,7 @@ model_state = ''
 
 model = 'a'
 check=False
+# get info from init
 def init(location):
     global data
     global input_size
@@ -42,6 +44,7 @@ def init(location):
     model.load_state_dict(model_state)
     model.eval()
     check=True
+# define funcions for processing output
 import numpy as np
 
 def bag_of_words(tokenized_sentence, words):
@@ -55,16 +58,18 @@ def bag_of_words(tokenized_sentence, words):
     return bag
 def tokenize(sentence):
     return nltk.word_tokenize(sentence)
-
+# function for classifying input
 def classify(sentence,location):
+    # make sure the model has been initialized
     global check
     if check == False:
         init(location)
+    # format input to bag of words
     sentence = tokenize(sentence)
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
     X = torch.from_numpy(X).to(device)
-    
+    # get output from the model
     output = model(X)
     _, predicted = torch.max(output, dim=1)
     tag = tags[predicted.item()]
