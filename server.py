@@ -1,3 +1,8 @@
+# this is just the code I use on my website.
+# You don't really need this.
+
+
+
 # import and download required packages
 import nltk
 from random import choice
