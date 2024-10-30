@@ -500,7 +500,8 @@
         "Make me an image of a unicorn running on a rainbow.",
         "Can I have an image of a chicken eating at McDonalds?",
         "Can you make me a picture of a rabbit eating a large carrot?",
-        "Make me a picture of a cow eating a thanksgiving dinner."
+        "Make me a picture of a cow eating a thanksgiving dinner.",
+        "How much money would I make selling lemonade?"
       ],
       "responses": ["Dall-e"]
     },
@@ -693,7 +694,14 @@
         "Let me know what an elephant eats.",
         "Can you tell me what the most famous repository on GitHub is?",
         "Can you inform me of a way to survive a hurricane?",
-        "Can you let me know when the football team plays?"
+        "Can you let me know when the football team plays?",
+        "How much do grapes cost in Pennsylvania?",
+        "What is the cost of apples and bananas in Kansas?",
+        "How much do oranges from florida cost?",
+        "How much money is a desktop computer?",
+        "How much do I have to pay for a Netflix subscription?",
+        "How much does gas cost me?",
+        "What is the average price of gas in the US?"
       ],
       "responses": ["Search"]
     },
