@@ -701,7 +701,10 @@
         "How much money is a desktop computer?",
         "How much do I have to pay for a Netflix subscription?",
         "How much does gas cost me?",
-        "What is the average price of gas in the US?"
+        "What is the average price of gas in the US?",
+        "What's the score of the football game?",
+        "What is the score of the baseball game?",
+        "Who won the game?"
       ],
       "responses": ["Search"]
     },
