@@ -704,7 +704,11 @@
         "What is the average price of gas in the US?",
         "What's the score of the football game?",
         "What is the score of the baseball game?",
-        "Who won the game?"
+        "Who won the game?",
+        "What were the results of the Olympic 100 meter?",
+        "What were Noah Lyle's results at the Olympics?",
+        "How fast did Cole Hocker run the 1600 at the Olympics?",
+        "Who won the 2024 Cross Country National Championships?"
       ],
       "responses": ["Search"]
     },
