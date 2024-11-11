@@ -268,7 +268,9 @@
         "List the different kinds of chips.",
         "List the kinds of exercise that help people lose weight.",
         "What is a python coding project I can make?",
-        "What is an easy recipe for cookies I can make in under 30 minutes?"
+        "What is an easy recipe for cookies I can make in under 30 minutes?",
+        "Make me a recipe that follows my vegan diet.",
+        "Give me a recipe that will make me taller."
       ],
       "responses": ["GPT"]
     },
@@ -710,7 +712,9 @@
         "How fast did Cole Hocker run the 1600 at the Olympics?",
         "Who won the 2024 Cross Country National Championships?",
         "What were Jared Goff's results at the football game last night?",
-        "What were America's results at the 2024 Olympic Games?"
+        "What were America's results at the 2024 Olympic Games?",
+        "What foods can I eat to make me taller?",
+        "What is a diet that will help me lose weight?"
       ],
       "responses": ["Search"]
     },
