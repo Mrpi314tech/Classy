@@ -29,7 +29,7 @@ def init(location,key):
 def download():
     print('Downloading the model from GitHub. Press Ctrl+c to quit.')
     time.sleep(3)
-    os.system('wget https://github.com/Mrpi314tech/Classy/raw/main/train/data.pth')
+    os.system('wget https://github.com/eedeb/Classy/raw/main/train/data.pth')
 try:
     import nltk
     nltk.word_tokenize('')
