@@ -270,7 +270,19 @@
         "What is a python coding project I can make?",
         "What is an easy recipe for cookies I can make in under 30 minutes?",
         "Make me a recipe that follows my vegan diet.",
-        "Give me a recipe that will make me taller."
+        "Give me a recipe for a meal that will make me taller.",
+        "compare these two teams for me.",
+        "estimate the score of the football game.",
+        "summarize this information.",
+        "compare and contrast protons and neutrons.",
+        "estimate how long it will take to get to mars.",
+        "summarize the past matchups of these two teams.",
+        "compare linux and windows",
+        "estimate the price of a thanksgiving turkey.",
+        "summarize this book for me.",
+        "compare these two performances.",
+        "estimate how long it will take to make this recipe.",
+        "summarize this conversation."
       ],
       "responses": ["GPT"]
     },
@@ -714,7 +726,11 @@
         "What were Jared Goff's results at the football game last night?",
         "What were America's results at the 2024 Olympic Games?",
         "What foods can I eat to make me taller?",
-        "What is a diet that will help me lose weight?"
+        "What is a diet that will help me lose weight?",
+        "Search some gourmet recipes for me.",
+        "Search how to make a website in python.",
+        "Please search the winner of today's game.",
+        "Search up some jokes about cats."
       ],
       "responses": ["Search"]
     },
