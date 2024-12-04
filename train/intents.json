@@ -282,7 +282,16 @@
         "summarize this book for me.",
         "compare these two performances.",
         "estimate how long it will take to make this recipe.",
-        "summarize this conversation."
+        "summarize this conversation.",
+        "What is the difference between a field goal and an extra point?",
+        "What is the difference between an electron and a proton?",
+        "What's the difference of chicken eggs and duck eggs?",
+        "Is there a difference between Tesla and Lexus?",
+        "Why is Elon Musk so rich?",
+        "Why do chickens lay eggs?",
+        "Why does sugar taste so good?",
+        "Why is it important to get vitamins?",
+        "Why is school mandatory?"
       ],
       "responses": ["GPT"]
     },
@@ -730,7 +739,10 @@
         "Search some gourmet recipes for me.",
         "Search how to make a website in python.",
         "Please search the winner of today's game.",
-        "Search up some jokes about cats."
+        "Search up some jokes about cats.",
+        "How old is Joe Biden?",
+        "How old is Elon Musk?",
+        "How old is the Lexus company?"
       ],
       "responses": ["Search"]
     },
@@ -771,7 +783,6 @@
         "What's your favorite hobby?",
         "Do you prefer cats or dogs?",
         "What's your go-to karaoke song?",
-        "What's your morning routine like?",
         "What's your favorite cuisine?",
         "Do you play any musical instruments?",
         "What's the last movie you watched?",
