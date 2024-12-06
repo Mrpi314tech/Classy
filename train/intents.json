@@ -291,7 +291,15 @@
         "Why do chickens lay eggs?",
         "Why does sugar taste so good?",
         "Why is it important to get vitamins?",
-        "Why is school mandatory?"
+        "Why is school mandatory?",
+        "Explain the difference between iphones and androids.",
+        "Explain why atoms bond with each other.",
+        "Explain how nuclear power plants work.",
+        "Explain what happend in 1941.",
+        "Can you explain how the moon landing happened?",
+        "Explain how chickens lay eggs.",
+        "Can you explain what strange matter is?",
+        "Explain how to code an html website with a blue background."
       ],
       "responses": ["GPT"]
     },
