@@ -299,7 +299,9 @@
         "Can you explain how the moon landing happened?",
         "Explain how chickens lay eggs.",
         "Can you explain what strange matter is?",
-        "Explain how to code an html website with a blue background."
+        "Explain how to code an html website with a blue background.",
+        "How do I comment stuff out in HTML?",
+        "How to make an incremental counter in python."
       ],
       "responses": ["GPT"]
     },
